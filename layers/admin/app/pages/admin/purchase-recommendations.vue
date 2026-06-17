@@ -265,7 +265,7 @@ const metrics = computed<AdminDataMetricItem[]>(() => [
 const columns: AdminDataTableColumn[] = [
   { key: 'ingredient', label: 'Bahan' },
   { key: 'supplier', label: 'Pemasok' },
-  { key: 'usage', label: 'WMA/Hari', align: 'right' },
+  { key: 'usage', label: 'Rata-rata/Hari', align: 'right' },
   { key: 'stock', label: 'Stok', align: 'right' },
   { key: 'minimum', label: 'Minimum', align: 'right' },
   { key: 'suggested', label: 'Saran Order', align: 'right' },
@@ -414,7 +414,7 @@ async function handleExport(format: 'pdf' | 'excel') {
       { key: 'ingredient', label: 'Bahan' },
       { key: 'type', label: 'Jenis' },
       { key: 'supplier', label: 'Pemasok' },
-      { key: 'dailyUsage', label: 'WMA/Hari', align: 'right' as const },
+      { key: 'dailyUsage', label: 'Rata-rata/Hari', align: 'right' as const },
       { key: 'currentStock', label: 'Stok', align: 'right' as const },
       { key: 'minimumStock', label: 'Minimum', align: 'right' as const },
       { key: 'suggestedQty', label: 'Saran Order', align: 'right' as const },
@@ -1053,7 +1053,7 @@ function getErrorMessage(error: unknown, fallback: string) {
                   <TableRow>
                     <TableHead>Bahan</TableHead>
                     <TableHead class="text-right">Stok</TableHead>
-                    <TableHead class="text-right">WMA/Hari</TableHead>
+                    <TableHead class="text-right">Rata-rata/Hari</TableHead>
                     <TableHead class="w-40 text-right">Qty Order</TableHead>
                     <TableHead class="text-right">Harga/Unit</TableHead>
                     <TableHead class="text-right">Estimasi</TableHead>
