@@ -41,7 +41,7 @@ function formatNumber(value: number) {
           Menu Terlaris
         </h2>
         <p class="mt-1 text-sm text-muted-foreground">
-          Urutan berdasarkan jumlah terjual hari ini.
+          Urutan berdasarkan jumlah terjual sepanjang masa.
         </p>
       </div>
     </div>
