@@ -726,7 +726,7 @@ const _routes = [
     name: "admin-purchase-recommendations",
     path: "/admin/purchase-recommendations",
     meta: { ...__nuxt_page_meta$h || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./purchase-recommendations-CwdfDILx.mjs')
+    component: () => import('./purchase-recommendations-waOlfLjj.mjs')
   },
   {
     name: "admin-semi-finished-ingredients",
@@ -804,7 +804,7 @@ const _routes = [
     name: "admin",
     path: "/admin",
     meta: { ...__nuxt_page_meta$4 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-CxXW3u0P.mjs')
+    component: () => import('./index-CYJJh8cd.mjs')
   },
   {
     name: "cashier",

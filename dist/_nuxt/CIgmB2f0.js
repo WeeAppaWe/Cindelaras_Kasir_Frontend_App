@@ -1,0 +1,1 @@
+import{u as o}from"./BHh_i8b_.js";import{e as r,B as s,o as c,c as i,n as u}from"./Bsx6WxDY.js";import"./Bjl96Z0C.js";import"./Di1vFE-p.js";const v=r({__name:"index",async setup(p){let e,t;const{defaultAuthenticatedPath:a,isAuthenticated:n}=o();return[e,t]=s(()=>u(n.value?a.value:"/login",{replace:!0})),await e,t(),(_,m)=>(c(),i("div"))}});export{v as default};
