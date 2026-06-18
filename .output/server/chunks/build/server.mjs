@@ -666,97 +666,97 @@ const _routes = [
     name: "admin-menu-create",
     path: "/admin/menu/create",
     meta: { ...__nuxt_page_meta$r || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./create-Q1EZQq1z.mjs')
+    component: () => import('./create-D4UDbZvm.mjs')
   },
   {
     name: "admin-reports-finance",
     path: "/admin/reports/finance",
     meta: { ...__nuxt_page_meta$q || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./finance-C-uGJyar.mjs')
+    component: () => import('./finance-v3P8dSZQ.mjs')
   },
   {
     name: "admin-reports-inventory",
     path: "/admin/reports/inventory",
     meta: { ...__nuxt_page_meta$p || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./inventory-BxFDkaM1.mjs')
+    component: () => import('./inventory-Bi0IE_xj.mjs')
   },
   {
     name: "admin-reports-operations",
     path: "/admin/reports/operations",
     meta: { ...__nuxt_page_meta$o || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./operations-UGUrEnpq.mjs')
+    component: () => import('./operations-CiZJnZVz.mjs')
   },
   {
     name: "admin-semi-finished-ingredients-create",
     path: "/admin/semi-finished-ingredients/create",
     meta: { ...__nuxt_page_meta$n || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./create-DDgPp4Tl.mjs')
+    component: () => import('./create-KXlvAP2Q.mjs')
   },
   {
     name: "admin-menu-menuId",
     path: "/admin/menu/:menuId()",
     meta: { ...__nuxt_page_meta$m || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./_menuId_-D5lkf3cr.mjs')
+    component: () => import('./_menuId_-BM9IGqMF.mjs')
   },
   {
     name: "admin-semi-finished-ingredients-semiFinishedIngredientsId",
     path: "/admin/semi-finished-ingredients/:semiFinishedIngredientsId()",
     meta: { ...__nuxt_page_meta$l || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./_semiFinishedIngredientsId_-ByFI3Z3-.mjs')
+    component: () => import('./_semiFinishedIngredientsId_-a9mDFK04.mjs')
   },
   {
     name: "admin-ingredients",
     path: "/admin/ingredients",
     meta: { ...__nuxt_page_meta$k || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./ingredients-DmsG-zAw.mjs')
+    component: () => import('./ingredients-CfsD1b-x.mjs')
   },
   {
     name: "admin-menu",
     path: "/admin/menu",
     meta: { ...__nuxt_page_meta$j || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-D4T8HRE1.mjs')
+    component: () => import('./index-DSfzljwW.mjs')
   },
   {
     name: "admin-menu-categories",
     path: "/admin/menu-categories",
     meta: { ...__nuxt_page_meta$i || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./menu-categories-EWSRzQp_.mjs')
+    component: () => import('./menu-categories-Bd1QMCXA.mjs')
   },
   {
     name: "admin-purchase-recommendations",
     path: "/admin/purchase-recommendations",
     meta: { ...__nuxt_page_meta$h || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./purchase-recommendations-Ca1r5gHs.mjs')
+    component: () => import('./purchase-recommendations-DV06YvhY.mjs')
   },
   {
     name: "admin-semi-finished-ingredients",
     path: "/admin/semi-finished-ingredients",
     meta: { ...__nuxt_page_meta$g || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-BJIXu19u.mjs')
+    component: () => import('./index-o02CDCNZ.mjs')
   },
   {
     name: "admin-stock-history",
     path: "/admin/stock-history",
     meta: { ...__nuxt_page_meta$f || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-history-Bm1sIhxY.mjs')
+    component: () => import('./stock-history-Dfb9Au2m.mjs')
   },
   {
     name: "admin-stock-in",
     path: "/admin/stock-in",
     meta: { ...__nuxt_page_meta$e || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-in-BtppEoIP.mjs')
+    component: () => import('./stock-in-Cx9uYbz5.mjs')
   },
   {
     name: "admin-stock-opname",
     path: "/admin/stock-opname",
     meta: { ...__nuxt_page_meta$d || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-opname-BQ_yFnhZ.mjs')
+    component: () => import('./stock-opname-liOwSSn7.mjs')
   },
   {
     name: "admin-stock-out",
     path: "/admin/stock-out",
     meta: { ...__nuxt_page_meta$c || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-out-DICHQrtJ.mjs')
+    component: () => import('./stock-out-CWJEn3qw.mjs')
   },
   {
     name: "admin-store-profile",
@@ -768,67 +768,67 @@ const _routes = [
     name: "admin-suppliers",
     path: "/admin/suppliers",
     meta: { ...__nuxt_page_meta$a || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./suppliers-CjcWLCWr.mjs')
+    component: () => import('./suppliers-DrbkCSPB.mjs')
   },
   {
     name: "admin-system-profile",
     path: "/admin/system-profile",
     meta: { ...__nuxt_page_meta$9 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./system-profile-BOmmdOww.mjs')
+    component: () => import('./system-profile-CMNRNep1.mjs')
   },
   {
     name: "admin-units",
     path: "/admin/units",
     meta: { ...__nuxt_page_meta$8 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./units-gwLge5kD.mjs')
+    component: () => import('./units-CeGUi7Aj.mjs')
   },
   {
     name: "admin-users",
     path: "/admin/users",
     meta: { ...__nuxt_page_meta$7 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./users-BMOHiO_U.mjs')
+    component: () => import('./users-BV20h62x.mjs')
   },
   {
     name: "cashier-cash-adjustments",
     path: "/cashier/cash-adjustments",
     meta: { ...__nuxt_page_meta$6 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./cash-adjustments-DkF5tcvL.mjs')
+    component: () => import('./cash-adjustments-BiyTz9t3.mjs')
   },
   {
     name: "cashier-transactions",
     path: "/cashier/transactions",
     meta: { ...__nuxt_page_meta$5 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./transactions-Dm0nckyj.mjs')
+    component: () => import('./transactions-DLBQ_Xsu.mjs')
   },
   {
     name: "admin",
     path: "/admin",
     meta: { ...__nuxt_page_meta$4 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-CYJJh8cd.mjs')
+    component: () => import('./index-BPrzQn7w.mjs')
   },
   {
     name: "cashier",
     path: "/cashier",
     meta: { ...__nuxt_page_meta$3 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./index-D7jMAeBF.mjs')
+    component: () => import('./index-BhbAoDX5.mjs')
   },
   {
     name: "forgot-password",
     path: "/forgot-password",
     meta: { ...__nuxt_page_meta$2 || {}, ...{ "middleware": "guest" } },
-    component: () => import('./forgot-password-C-3HQ8w9.mjs')
+    component: () => import('./forgot-password-BexPa7em.mjs')
   },
   {
     name: "login",
     path: "/login",
     meta: { ...__nuxt_page_meta$1 || {}, ...{ "middleware": "guest" } },
-    component: () => import('./login-B_xj_Jo1.mjs')
+    component: () => import('./login-0KqenfBS.mjs')
   },
   {
     name: "index",
     path: "/",
     meta: __nuxt_page_meta || {},
-    component: () => import('./index-D6s1-QZr.mjs')
+    component: () => import('./index-XrcISLP3.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -974,10 +974,10 @@ const globalMiddleware = [
   manifest_45route_45rule
 ];
 const namedMiddleware = {
-  "admin-only": () => import('./admin-only-DnRwSJWU.mjs'),
-  auth: () => import('./auth-Dq25Q6qL.mjs'),
-  guest: () => import('./guest-DNoC24ct.mjs'),
-  "cashier-only": () => import('./cashier-only-Czrl1zNz.mjs')
+  "admin-only": () => import('./admin-only-Ca1IV28M.mjs'),
+  auth: () => import('./auth-CjoVvuhw.mjs'),
+  guest: () => import('./guest-CMYgW8lO.mjs'),
+  "cashier-only": () => import('./cashier-only-B6UooYF2.mjs')
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -1226,6 +1226,61 @@ typeof WorkerGlobalScope !== "undefined" && globalThis instanceof WorkerGlobalSc
 const isDef = (val) => typeof val !== "undefined";
 const toString = Object.prototype.toString;
 const isObject = (val) => toString.call(val) === "[object Object]";
+const noop = () => {
+};
+function createFilterWrapper(filter, fn) {
+  function wrapper(...args) {
+    return new Promise((resolve, reject) => {
+      Promise.resolve(filter(() => fn.apply(this, args), {
+        fn,
+        thisArg: this,
+        args
+      })).then(resolve).catch(reject);
+    });
+  }
+  return wrapper;
+}
+const bypassFilter = (invoke$1) => {
+  return invoke$1();
+};
+function debounceFilter(ms, options = {}) {
+  let timer;
+  let maxTimer;
+  let lastRejector = noop;
+  const _clearTimeout = (timer$1) => {
+    clearTimeout(timer$1);
+    lastRejector();
+    lastRejector = noop;
+  };
+  let lastInvoker;
+  const filter = (invoke$1) => {
+    const duration = toValue(ms);
+    const maxDuration = toValue(options.maxWait);
+    if (timer) _clearTimeout(timer);
+    if (duration <= 0 || maxDuration !== void 0 && maxDuration <= 0) {
+      if (maxTimer) {
+        _clearTimeout(maxTimer);
+        maxTimer = void 0;
+      }
+      return Promise.resolve(invoke$1());
+    }
+    return new Promise((resolve, reject) => {
+      lastRejector = options.rejectOnCancel ? reject : resolve;
+      lastInvoker = invoke$1;
+      if (maxDuration && !maxTimer) maxTimer = setTimeout(() => {
+        if (timer) _clearTimeout(timer);
+        maxTimer = void 0;
+        resolve(lastInvoker());
+      }, maxDuration);
+      timer = setTimeout(() => {
+        if (maxTimer) _clearTimeout(maxTimer);
+        maxTimer = void 0;
+        resolve(invoke$1());
+      }, duration);
+    });
+  };
+  return filter;
+}
 function pxValue(px) {
   return px.endsWith("rem") ? Number.parseFloat(px) * 16 : Number.parseFloat(px);
 }
@@ -1267,6 +1322,17 @@ function reactiveOmit(obj, ...keys) {
   const flatKeys = keys.flat();
   const predicate = flatKeys[0];
   return reactiveComputed(() => typeof predicate === "function" ? Object.fromEntries(Object.entries(toRefs(obj)).filter(([k, v]) => !predicate(toValue(v), k))) : Object.fromEntries(Object.entries(toRefs(obj)).filter((e) => !flatKeys.includes(e[0]))));
+}
+function watchWithFilter(source, cb, options = {}) {
+  const { eventFilter = bypassFilter, ...watchOptions } = options;
+  return watch(source, createFilterWrapper(eventFilter, cb), watchOptions);
+}
+function watchDebounced(source, cb, options = {}) {
+  const { debounce = 0, maxWait = void 0, ...watchOptions } = options;
+  return watchWithFilter(source, cb, {
+    ...watchOptions,
+    eventFilter: debounceFilter(debounce, { maxWait })
+  });
 }
 function watchImmediate(source, cb, options) {
   return watch(source, cb, {
@@ -1413,9 +1479,9 @@ const plugins = [
   ssr_width_hHlXKglKZCyPkV1wdX9y7dzE_HMTlbfe2qoVkUmjDVM
 ];
 const layouts = {
-  cashier: defineAsyncComponent(() => import('./cashier-CoIPQore.mjs').then((m) => m.default || m)),
-  auth: defineAsyncComponent(() => import('./auth-6QqsNAFA.mjs').then((m) => m.default || m)),
-  admin: defineAsyncComponent(() => import('./admin-B9x2sxdb.mjs').then((m) => m.default || m))
+  cashier: defineAsyncComponent(() => import('./cashier-DHVGQVTu.mjs').then((m) => m.default || m)),
+  auth: defineAsyncComponent(() => import('./auth-5vZc4nQ1.mjs').then((m) => m.default || m)),
+  admin: defineAsyncComponent(() => import('./admin-BEkSxBZH.mjs').then((m) => m.default || m))
 };
 const routeRulesMatcher = _routeRulesMatcher;
 const LayoutLoader = defineComponent({
@@ -1779,5 +1845,5 @@ let entry;
 }
 const entry_default = ((ssrContext) => entry(ssrContext));
 
-export { _export_sfc as _, useRouter as a, resolveRouteObject as b, useNuxtApp as c, useRuntimeConfig as d, entry_default as default, encodeRoutePath as e, nuxtLinkDefaults as f, useVModel as g, defineNuxtRouteMiddleware as h, useMediaQuery as i, useEventListener as j, navigateTo as n, reactiveOmit as r, useRoute as u };
+export { _export_sfc as _, useRouter as a, resolveRouteObject as b, useNuxtApp as c, useRuntimeConfig as d, entry_default as default, encodeRoutePath as e, nuxtLinkDefaults as f, useVModel as g, defineNuxtRouteMiddleware as h, useMediaQuery as i, useEventListener as j, navigateTo as n, reactiveOmit as r, useRoute as u, watchDebounced as w };
 //# sourceMappingURL=server.mjs.map

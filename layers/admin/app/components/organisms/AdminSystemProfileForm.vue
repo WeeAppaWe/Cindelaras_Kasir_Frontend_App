@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watchDebounced } from '@vueuse/core'
 import type {
   AdminSystemProfile,
   AdminSystemProfileFormPayload,
@@ -66,6 +67,15 @@ interface ReceiptPreviewSample {
   change_amount: number
 }
 
+interface PreviewPdfPayload {
+  store_name: string
+  store_address: string
+  store_phone: string
+  store_logo: string
+  receipt_header: string
+  receipt_footer: string
+}
+
 type FormField = keyof FormState
 
 const props = withDefaults(defineProps<{
@@ -107,23 +117,27 @@ const errors = reactive<Record<FormField, string>>({
 const logoFileInput = ref<HTMLInputElement | null>(null)
 const selectedLogoFile = ref<File | null>(null)
 const selectedLogoFileName = ref('')
-const receiptPreview = ref<ReceiptPreviewSample | null>(null)
+const pdfBlobUrl = ref<string | null>(null)
 const isReceiptPreviewLoading = ref(false)
 const receiptPreviewError = ref('')
 
 watch(() => props.profile, hydrateForm, { immediate: true })
 watch(() => props.successMessage, (message) => {
   if (message) {
-    void loadReceiptPreviewSample({ force: true })
+    void loadReceiptPreviewPdf({ force: true })
   }
 })
 
 onMounted(() => {
-  void loadReceiptPreviewSample()
+  void loadReceiptPreviewPdf()
 })
 
 const normalizedFormPayload = computed<AdminSystemProfileFormPayload>(() => createPayloadFromForm())
 const savedPayload = computed<AdminSystemProfileFormPayload>(() => createPayloadFromProfile(props.profile))
+
+watchDebounced(normalizedFormPayload, () => {
+  void loadReceiptPreviewPdf()
+}, { debounce: 1000, maxWait: 5000, deep: true })
 const hasChanges = computed(() => !isSamePayload(normalizedFormPayload.value, savedPayload.value))
 const logoReferenceInputValue = computed(() => {
   if (isImageDataUrl(form.logoUrl)) {
@@ -141,54 +155,6 @@ const previewStoreName = computed(() => form.storeName.trim() || 'Nama usaha')
 const previewStoreAddress = computed(() => form.storeAddress.trim() || 'Alamat usaha')
 const previewStoreContact = computed(() => form.storePhone.trim() || 'Nomor kontak')
 const previewSystemDisplayName = computed(() => form.systemDisplayName.trim() || 'Nama aplikasi')
-const previewReceiptHeader = computed(() => form.receiptHeader.trim() || 'Header struk belum diisi.')
-const previewReceiptFooter = computed(() => form.receiptFooter.trim() || 'Catatan/footer struk belum diisi.')
-const fallbackReceiptPreview = computed<ReceiptPreviewSample>(() => ({
-  store_name: previewStoreName.value,
-  store_address: previewStoreAddress.value,
-  store_phone: previewStoreContact.value,
-  store_logo: form.logoUrl.trim(),
-  receipt_header: previewReceiptHeader.value,
-  receipt_footer: previewReceiptFooter.value,
-  order_id: '00000000-0000-0000-0000-000000000000',
-  receipt: 'PREVIEW-SAMPLE',
-  order_date: '10 Jun 2026',
-  order_time: '14.30',
-  cashier_name: 'Admin Preview',
-  customer_name: 'Pelanggan Contoh',
-  customer_phone: '081234567890',
-  items: [
-    {
-      name: 'Nasi Goreng Spesial',
-      qty: 1,
-      price: 25000,
-      subtotal: 25000,
-    },
-    {
-      name: 'Es Teh Manis',
-      qty: 2,
-      price: 5000,
-      subtotal: 10000,
-    },
-  ],
-  total: 35000,
-  payment_type: 'CASH',
-  paid_amount: 50000,
-  change_amount: 15000,
-}))
-const activeReceiptPreview = computed(() => receiptPreview.value ?? fallbackReceiptPreview.value)
-const receiptPreviewLogoUrl = computed(() => activeReceiptPreview.value.store_logo.trim())
-const canShowReceiptPreviewLogo = computed(() => {
-  const logoUrl = receiptPreviewLogoUrl.value
-
-  return Boolean(logoUrl && isValidImageReference(logoUrl))
-})
-const receiptPreviewCustomer = computed(() => {
-  const customerName = activeReceiptPreview.value.customer_name?.trim()
-  const customerPhone = activeReceiptPreview.value.customer_phone?.trim()
-
-  return [customerName, customerPhone].filter(Boolean).join(' - ') || '-'
-})
 const logoInitials = computed(() => {
   const words = previewStoreName.value.split(/\s+/).filter(Boolean)
   const initials = words.slice(0, 2).map(word => word[0]?.toUpperCase()).join('')
@@ -228,8 +194,8 @@ function resetForm() {
   hydrateForm(props.profile)
 }
 
-async function loadReceiptPreviewSample(options: { force?: boolean } = {}) {
-  if (isReceiptPreviewLoading.value || (receiptPreview.value && !options.force)) {
+async function loadReceiptPreviewPdf(options: { force?: boolean } = {}) {
+  if (isReceiptPreviewLoading.value) {
     return
   }
 
@@ -237,16 +203,39 @@ async function loadReceiptPreviewSample(options: { force?: boolean } = {}) {
   isReceiptPreviewLoading.value = true
 
   try {
-    const payload = await api.get<unknown>(apiEndpoints.receipt.previewSample)
-    receiptPreview.value = normalizeReceiptPreviewSample(payload)
+    const payload: PreviewPdfPayload = {
+      store_name: form.storeName.trim() || previewStoreName.value,
+      store_address: form.storeAddress.trim() || previewStoreAddress.value,
+      store_phone: form.storePhone.trim() || previewStoreContact.value,
+      store_logo: form.logoUrl.trim(),
+      receipt_header: form.receiptHeader.trim() || 'Terima kasih sudah berbelanja.',
+      receipt_footer: form.receiptFooter.trim() || 'Simpan struk ini sebagai bukti pembayaran.',
+    }
+
+    const blob = await api.post<Blob>(apiEndpoints.receipt.previewPdf, payload, {
+      responseType: 'blob',
+      unwrap: false,
+    })
+
+    if (pdfBlobUrl.value) {
+      URL.revokeObjectURL(pdfBlobUrl.value)
+    }
+
+    pdfBlobUrl.value = URL.createObjectURL(blob)
   }
   catch (error) {
-    receiptPreviewError.value = getErrorMessage(error, 'Gagal memuat preview struk dari backend.')
+    receiptPreviewError.value = getErrorMessage(error, 'Gagal memuat preview struk PDF dari backend.')
   }
   finally {
     isReceiptPreviewLoading.value = false
   }
 }
+
+onUnmounted(() => {
+  if (pdfBlobUrl.value) {
+    URL.revokeObjectURL(pdfBlobUrl.value)
+  }
+})
 
 function openLogoFilePicker() {
   if (props.submitting) {
@@ -396,32 +385,6 @@ function isValidPhoneNumber(value: string) {
   return /^\+?[\d\s().-]{7,24}$/.test(trimmedValue)
 }
 
-function normalizeReceiptPreviewSample(payload: unknown): ReceiptPreviewSample {
-  const record = isRecord(payload) ? payload : {}
-  const items = Array.isArray(record.items) ? record.items : []
-
-  return {
-    store_name: getStringValue(record.store_name),
-    store_address: getStringValue(record.store_address),
-    store_phone: getStringValue(record.store_phone),
-    store_logo: getStringValue(record.store_logo),
-    receipt_header: getStringValue(record.receipt_header),
-    receipt_footer: getStringValue(record.receipt_footer),
-    order_id: getStringValue(record.order_id),
-    receipt: getNullableStringValue(record.receipt),
-    order_date: getStringValue(record.order_date),
-    order_time: getStringValue(record.order_time),
-    cashier_name: getStringValue(record.cashier_name),
-    customer_name: getNullableStringValue(record.customer_name),
-    customer_phone: getNullableStringValue(record.customer_phone),
-    items: items.map(normalizeReceiptPreviewItem),
-    total: getNumberValue(record.total),
-    payment_type: getStringValue(record.payment_type),
-    paid_amount: getNumberValue(record.paid_amount),
-    change_amount: getNumberValue(record.change_amount),
-  }
-}
-
 function normalizeReceiptPreviewItem(value: unknown): ReceiptPreviewItem {
   const record = isRecord(value) ? value : {}
 
@@ -431,10 +394,6 @@ function normalizeReceiptPreviewItem(value: unknown): ReceiptPreviewItem {
     price: getNumberValue(record.price),
     subtotal: getNumberValue(record.subtotal),
   }
-}
-
-function formatReceiptAmount(value: number) {
-  return new Intl.NumberFormat('id-ID').format(value)
 }
 
 function getStringValue(value: unknown) {
@@ -814,96 +773,41 @@ function getErrorMessage(error: unknown, fallback: string) {
             size="icon"
             :disabled="isReceiptPreviewLoading"
             aria-label="Muat ulang preview struk"
-            @click="loadReceiptPreviewSample({ force: true })"
+            @click="loadReceiptPreviewPdf({ force: true })"
           >
             <Spinner v-if="isReceiptPreviewLoading" class="size-4" />
             <RefreshCcw v-else class="size-4" aria-hidden="true" />
           </Button>
         </div>
 
-        <div class="mx-auto w-full max-w-xs rounded-md border bg-background p-4 font-mono text-xs shadow-xs">
-          <p v-if="receiptPreviewError" class="mb-3 rounded-md border border-destructive/30 bg-destructive/10 px-2 py-1.5 font-sans text-xs text-destructive">
+        <div class="mx-auto w-full max-w-[280px] sm:max-w-xs md:max-w-md xl:max-w-full min-h-[480px] h-[550px] rounded-md border bg-background overflow-hidden shadow-xs relative">
+          <p v-if="receiptPreviewError" class="absolute inset-x-4 top-4 z-10 rounded-md border border-destructive/30 bg-destructive/10 px-2 py-1.5 font-sans text-xs text-destructive">
             {{ receiptPreviewError }}
           </p>
 
-          <div class="text-center">
-            <img
-              v-if="canShowReceiptPreviewLogo"
-              :src="receiptPreviewLogoUrl"
-              :alt="`Logo ${activeReceiptPreview.store_name || previewStoreName}`"
-              class="mx-auto mb-2 size-12 rounded-md border object-contain p-1.5"
-            >
-            <p class="font-bold">{{ activeReceiptPreview.store_name || previewStoreName }}</p>
-            <p class="mt-1 text-muted-foreground">{{ activeReceiptPreview.store_address || previewStoreAddress }}</p>
-            <p class="text-muted-foreground">{{ activeReceiptPreview.store_phone || previewStoreContact }}</p>
+          <object
+            v-if="pdfBlobUrl"
+            :data="pdfBlobUrl"
+            type="application/pdf"
+            class="size-full"
+            title="Preview Struk PDF"
+          >
+            <div class="flex h-full flex-col items-center justify-center p-4 text-center">
+              <p class="mb-2 text-sm font-medium">Browser tidak mendukung preview PDF bawaan.</p>
+              <a
+                :href="pdfBlobUrl"
+                target="_blank"
+                download="preview-struk.pdf"
+                class="text-sm text-primary hover:underline"
+              >
+                Unduh PDF Preview
+              </a>
+            </div>
+          </object>
+          <div v-else-if="isReceiptPreviewLoading" class="flex h-full flex-col items-center justify-center">
+            <Spinner class="size-6 text-muted-foreground" />
+            <p class="mt-2 text-sm text-muted-foreground">Memuat preview PDF...</p>
           </div>
-
-          <div class="my-3 border-t border-dashed" />
-          <p class="whitespace-pre-line text-center">
-            {{ activeReceiptPreview.receipt_header || previewReceiptHeader }}
-          </p>
-          <div class="my-3 border-t border-dashed" />
-
-          <div class="space-y-1 text-muted-foreground">
-            <div class="flex justify-between gap-3">
-              <span>No</span>
-              <span class="text-right text-foreground">{{ activeReceiptPreview.receipt || '-' }}</span>
-            </div>
-            <div class="flex justify-between gap-3">
-              <span>Tanggal</span>
-              <span class="text-right text-foreground">
-                {{ activeReceiptPreview.order_date || '-' }} {{ activeReceiptPreview.order_time || '' }}
-              </span>
-            </div>
-            <div class="flex justify-between gap-3">
-              <span>Kasir</span>
-              <span class="text-right text-foreground">{{ activeReceiptPreview.cashier_name || '-' }}</span>
-            </div>
-            <div class="flex justify-between gap-3">
-              <span>Pelanggan</span>
-              <span class="max-w-36 truncate text-right text-foreground">{{ receiptPreviewCustomer }}</span>
-            </div>
-          </div>
-
-          <div class="my-3 border-t border-dashed" />
-          <div class="space-y-1">
-            <div
-              v-for="(item, index) in activeReceiptPreview.items"
-              :key="`${item.name}-${index}`"
-              class="space-y-0.5"
-            >
-              <div class="flex justify-between gap-3">
-                <span class="min-w-0 truncate">{{ item.name || '-' }}</span>
-                <span>{{ formatReceiptAmount(item.subtotal) }}</span>
-              </div>
-              <p class="text-muted-foreground">
-                {{ formatReceiptAmount(item.price) }} x {{ formatReceiptAmount(item.qty) }}
-              </p>
-            </div>
-          </div>
-          <div class="my-3 border-t border-dashed" />
-          <div class="space-y-1">
-            <div class="flex justify-between gap-3 font-bold">
-              <span>Total</span>
-              <span>{{ formatReceiptAmount(activeReceiptPreview.total) }}</span>
-            </div>
-            <div class="flex justify-between gap-3 text-muted-foreground">
-              <span>Bayar</span>
-              <span class="text-foreground">{{ formatReceiptAmount(activeReceiptPreview.paid_amount) }}</span>
-            </div>
-            <div class="flex justify-between gap-3 text-muted-foreground">
-              <span>Kembali</span>
-              <span class="text-foreground">{{ formatReceiptAmount(activeReceiptPreview.change_amount) }}</span>
-            </div>
-            <div class="flex justify-between gap-3 text-muted-foreground">
-              <span>Metode</span>
-              <span class="text-foreground">{{ activeReceiptPreview.payment_type || '-' }}</span>
-            </div>
-          </div>
-          <div class="my-3 border-t border-dashed" />
-          <p class="whitespace-pre-line text-center text-muted-foreground">
-            {{ activeReceiptPreview.receipt_footer || previewReceiptFooter }}
-          </p>
         </div>
       </section>
     </aside>

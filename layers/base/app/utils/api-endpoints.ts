@@ -141,6 +141,7 @@ export const apiEndpoints = {
   receipt: {
     pdf: (orderId: string) => `/receipt/${orderId}/pdf`,
     previewSample: '/receipt/preview-sample',
+    previewPdf: '/receipt/preview-pdf',
     preview: (orderId: string) => `/receipt/${orderId}/preview`,
     send: (orderId: string) => `/receipt/${orderId}/send`,
   },
