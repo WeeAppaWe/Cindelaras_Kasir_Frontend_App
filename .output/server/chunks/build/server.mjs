@@ -726,7 +726,7 @@ const _routes = [
     name: "admin-purchase-recommendations",
     path: "/admin/purchase-recommendations",
     meta: { ...__nuxt_page_meta$h || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./purchase-recommendations-waOlfLjj.mjs')
+    component: () => import('./purchase-recommendations-Ca1r5gHs.mjs')
   },
   {
     name: "admin-semi-finished-ingredients",

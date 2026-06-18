@@ -1,1 +1,0 @@
-import{u as a}from"./B-Q-00Uz.js";import{e as o,B as r,o as s,c as n,n as i}from"./Bsx6WxDY.js";const f=o({__name:"store-profile",async setup(c){let e,t;return a({title:"Profil Sistem"}),[e,t]=r(()=>i("/admin/system-profile",{replace:!0})),await e,t(),(m,p)=>(s(),n("div"))}});export{f as default};

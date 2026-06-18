@@ -224,11 +224,10 @@ const resultDescription = computed(() => {
   const targetDays = processedQuery.value.target_days ?? analysis.value.config.target_days
   const bufferPercent = processedQuery.value.buffer_percent ?? analysis.value.config.buffer_percent
   const lookbackDays = processedQuery.value.lookback_days ?? analysis.value.config.lookback_days
-  const ingredientTypeLabel = ingredientTypeOptions.find(o => o.value === processedQuery.value?.ingredient_type)?.label ?? 'Semua bahan'
   const supplierLabel = processedSupplierId.value === 'all'
     ? 'semua pemasok'
     : supplierDrafts.value[0]?.name ?? 'pemasok terpilih'
-  return `${ingredientTypeLabel}, ${supplierLabel}. Target ${formatNumber(targetDays)} hari, cadangan ${formatNumber(bufferPercent)}%, histori ${formatNumber(lookbackDays)} hari.`
+  return `${supplierLabel.charAt(0).toUpperCase() + supplierLabel.slice(1)}. Target ${formatNumber(targetDays)} hari, cadangan ${formatNumber(bufferPercent)}%, histori ${formatNumber(lookbackDays)} hari.`
 })
 
 const metrics = computed<AdminDataMetricItem[]>(() => [
@@ -644,20 +643,8 @@ function getErrorMessage(error: unknown, fallback: string) {
                 </div>
               </div>
 
-              <!-- Baris 2: Filter bahan dan pemasok -->
-              <div class="grid gap-3 sm:grid-cols-2">
-                <div class="rounded-lg border bg-muted/30 p-3">
-                  <label for="spk-ingredient-type" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Jenis bahan
-                  </label>
-                  <NativeSelect id="spk-ingredient-type" v-model="parameters.ingredientType" class="w-full bg-background">
-                    <option v-for="option in ingredientTypeOptions" :key="option.value" :value="option.value">
-                      {{ option.label }}
-                    </option>
-                  </NativeSelect>
-                  <p class="mt-1.5 text-xs text-muted-foreground">{{ selectedIngredientTypeOption.description }}</p>
-                </div>
-
+              <!-- Baris 2: Filter pemasok -->
+              <div class="grid gap-3">
                 <div class="rounded-lg border bg-muted/30 p-3">
                   <label for="spk-supplier" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     Pemasok
@@ -731,10 +718,6 @@ function getErrorMessage(error: unknown, fallback: string) {
               </div>
               <Separator class="my-1" />
               <div class="flex justify-between gap-2">
-                <dt class="text-muted-foreground">Bahan</dt>
-                <dd class="text-right font-medium">{{ selectedIngredientTypeOption.label }}</dd>
-              </div>
-              <div class="flex justify-between gap-2">
                 <dt class="text-muted-foreground">Pemasok</dt>
                 <dd class="text-right font-medium">{{ selectedSupplierLabel }}</dd>
               </div>
@@ -745,7 +728,7 @@ function getErrorMessage(error: unknown, fallback: string) {
           <div class="rounded-xl border bg-card p-4 text-sm">
             <div class="mb-3 flex items-center gap-2">
               <BrainCircuit class="size-4 text-primary" aria-hidden="true" />
-              <p class="font-semibold">Kriteria & Bobot SPK</p>
+              <p class="font-semibold">Kriteria & Bobot</p>
             </div>
 
             <!-- Formula bertahap -->
@@ -852,7 +835,7 @@ function getErrorMessage(error: unknown, fallback: string) {
 
     <!-- ── TAMPILAN 2: LOADING ──────────────────────────────────────────── -->
     <template v-else-if="currentView === 'loading'">
-      <div class="flex min-h-[28rem] flex-1 flex-col items-center justify-center rounded-xl border bg-card px-4 text-center shadow-xs">
+      <div class="flex min-h-112 flex-1 flex-col items-center justify-center rounded-xl border bg-card px-4 text-center shadow-xs">
         <div class="flex flex-col items-center gap-5">
           <div class="relative flex size-20 items-center justify-center">
             <div class="absolute inset-0 animate-ping rounded-full bg-primary/15" />
@@ -926,10 +909,7 @@ function getErrorMessage(error: unknown, fallback: string) {
             <span class="text-muted-foreground">Cadangan stok:</span>
             <span class="font-medium tabular-nums">{{ processedQuery?.buffer_percent ?? '-' }}%</span>
           </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-muted-foreground">Jenis bahan:</span>
-            <span class="font-medium">{{ ingredientTypeOptions.find(o => o.value === processedQuery?.ingredient_type)?.label ?? 'Semua' }}</span>
-          </div>
+
           <div class="ml-auto flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
             <span>Saran = max(0, WMA×Target×(1+Cadangan%) − Stok)</span>
           </div>
@@ -937,7 +917,7 @@ function getErrorMessage(error: unknown, fallback: string) {
       </div>
 
       <!-- Metrik ringkasan -->
-      <section class="grid gap-2 sm:grid-cols-2 xl:grid-cols-4" aria-label="Ringkasan hasil SPK">
+      <section class="grid gap-2 sm:grid-cols-2 xl:grid-cols-4" aria-label="Ringkasan rekomendasi belanja">
         <AdminDataMetric v-for="item in metrics" :key="item.id" v-bind="item">
           <template #icon>
             <component :is="getMetricIcon(item.id)" class="size-4" aria-hidden="true" />
@@ -973,7 +953,7 @@ function getErrorMessage(error: unknown, fallback: string) {
           <AdminDataToolbar
             v-model="search"
             search-id="spk-result-search"
-            search-label="Cari hasil SPK"
+            search-label="Cari rekomendasi belanja"
             search-placeholder="Cari bahan, pemasok, satuan, atau estimasi"
           >
             <template #action>
@@ -1143,8 +1123,8 @@ function getErrorMessage(error: unknown, fallback: string) {
             :rows="rows"
             :loading="false"
             :actions="[]"
-            label="hasil SPK"
-            empty-title="Hasil SPK tidak ditemukan"
+            label="rekomendasi belanja"
+            empty-title="Rekomendasi belanja tidak ditemukan"
             empty-description="Coba ubah kata kunci pencarian."
           />
         </div>
