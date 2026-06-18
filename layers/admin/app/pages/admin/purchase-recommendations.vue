@@ -527,7 +527,7 @@ function getErrorMessage(error: unknown, fallback: string) {
   <div class="flex min-h-full flex-col gap-3 p-3 sm:p-4">
     <AdminPageHeader
       title="Rekomendasi Belanja"
-      description="Sistem pendukung keputusan berbasis WMA untuk menghasilkan draf order pembelian berdasarkan histori pemakaian dan target stok aman."
+      description="Analisis otomatis untuk menghasilkan draf order pembelian berdasarkan data histori pemakaian dan target stok aman."
     />
 
     <!-- ── TAMPILAN 1: INPUT PARAMETER ─────────────────────────────────── -->
@@ -638,7 +638,7 @@ function getErrorMessage(error: unknown, fallback: string) {
                     {{ parameterErrors.lookbackDays }}
                   </p>
                   <p v-else class="mt-1.5 text-xs text-muted-foreground">
-                    Basis WMA dari {{ parameters.lookbackDays || '?' }} hari terakhir · min 7, maks 90
+                    Basis rata-rata dari {{ parameters.lookbackDays || '?' }} hari terakhir · min 7, maks 90
                   </p>
                 </div>
               </div>
@@ -735,7 +735,7 @@ function getErrorMessage(error: unknown, fallback: string) {
             <div class="mb-3 space-y-1.5 rounded-lg bg-muted/50 px-3 py-2.5">
               <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Formula perhitungan</p>
               <p class="font-mono text-xs leading-relaxed text-foreground">
-                ① Kebutuhan = WMA × Target hari
+                ① Kebutuhan = Rata-rata harian × Target hari
               </p>
               <p class="font-mono text-xs leading-relaxed text-foreground">
                 ② Cadangan = Kebutuhan × Cadangan%
@@ -761,7 +761,7 @@ function getErrorMessage(error: unknown, fallback: string) {
                     :style="{ width: `${Math.min(100, (lookbackDaysValue / 90) * 100)}%` }"
                   />
                 </div>
-                <p class="mt-0.5 text-xs text-muted-foreground">Mempengaruhi kualitas WMA — makin panjang makin stabil</p>
+                <p class="mt-0.5 text-xs text-muted-foreground">Mempengaruhi akurasi rata-rata — makin panjang makin stabil</p>
               </div>
 
               <div>
@@ -775,7 +775,7 @@ function getErrorMessage(error: unknown, fallback: string) {
                     :style="{ width: `${Math.min(100, (targetDaysValue / 90) * 100)}%` }"
                   />
                 </div>
-                <p class="mt-0.5 text-xs text-muted-foreground">Pengali WMA — makin besar → qty order makin banyak</p>
+                <p class="mt-0.5 text-xs text-muted-foreground">Pengali rata-rata harian — makin besar → qty order makin banyak</p>
               </div>
 
               <div>
