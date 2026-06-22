@@ -43,6 +43,10 @@ export function useApiClient() {
         headers.set('x-api-key', authCredentials.apiKey)
       }
 
+      if (!headers.has('timezone')) {
+        headers.set('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
+      }
+
       options.headers = headers
     },
   })

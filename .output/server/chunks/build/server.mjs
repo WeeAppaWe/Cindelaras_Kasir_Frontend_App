@@ -666,97 +666,97 @@ const _routes = [
     name: "admin-menu-create",
     path: "/admin/menu/create",
     meta: { ...__nuxt_page_meta$r || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./create-D4UDbZvm.mjs')
+    component: () => import('./create-BlLv4ppJ.mjs')
   },
   {
     name: "admin-reports-finance",
     path: "/admin/reports/finance",
     meta: { ...__nuxt_page_meta$q || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./finance-v3P8dSZQ.mjs')
+    component: () => import('./finance-DLCg58u6.mjs')
   },
   {
     name: "admin-reports-inventory",
     path: "/admin/reports/inventory",
     meta: { ...__nuxt_page_meta$p || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./inventory-Bi0IE_xj.mjs')
+    component: () => import('./inventory-BQWkWXQ6.mjs')
   },
   {
     name: "admin-reports-operations",
     path: "/admin/reports/operations",
     meta: { ...__nuxt_page_meta$o || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./operations-CiZJnZVz.mjs')
+    component: () => import('./operations-CnMTkGuD.mjs')
   },
   {
     name: "admin-semi-finished-ingredients-create",
     path: "/admin/semi-finished-ingredients/create",
     meta: { ...__nuxt_page_meta$n || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./create-KXlvAP2Q.mjs')
+    component: () => import('./create-fFNvieA1.mjs')
   },
   {
     name: "admin-menu-menuId",
     path: "/admin/menu/:menuId()",
     meta: { ...__nuxt_page_meta$m || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./_menuId_-BM9IGqMF.mjs')
+    component: () => import('./_menuId_-BZcfI9Qd.mjs')
   },
   {
     name: "admin-semi-finished-ingredients-semiFinishedIngredientsId",
     path: "/admin/semi-finished-ingredients/:semiFinishedIngredientsId()",
     meta: { ...__nuxt_page_meta$l || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./_semiFinishedIngredientsId_-a9mDFK04.mjs')
+    component: () => import('./_semiFinishedIngredientsId_-DBCWpJ4W.mjs')
   },
   {
     name: "admin-ingredients",
     path: "/admin/ingredients",
     meta: { ...__nuxt_page_meta$k || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./ingredients-CfsD1b-x.mjs')
+    component: () => import('./ingredients-CPNBf_qy.mjs')
   },
   {
     name: "admin-menu",
     path: "/admin/menu",
     meta: { ...__nuxt_page_meta$j || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-DSfzljwW.mjs')
+    component: () => import('./index-DCLKMUjT.mjs')
   },
   {
     name: "admin-menu-categories",
     path: "/admin/menu-categories",
     meta: { ...__nuxt_page_meta$i || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./menu-categories-Bd1QMCXA.mjs')
+    component: () => import('./menu-categories-DklmBMsH.mjs')
   },
   {
     name: "admin-purchase-recommendations",
     path: "/admin/purchase-recommendations",
     meta: { ...__nuxt_page_meta$h || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./purchase-recommendations-BIe3i0w3.mjs')
+    component: () => import('./purchase-recommendations-Dbv_tR07.mjs')
   },
   {
     name: "admin-semi-finished-ingredients",
     path: "/admin/semi-finished-ingredients",
     meta: { ...__nuxt_page_meta$g || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-o02CDCNZ.mjs')
+    component: () => import('./index-Bnb4eMuY.mjs')
   },
   {
     name: "admin-stock-history",
     path: "/admin/stock-history",
     meta: { ...__nuxt_page_meta$f || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-history-Dfb9Au2m.mjs')
+    component: () => import('./stock-history-DYef2FS7.mjs')
   },
   {
     name: "admin-stock-in",
     path: "/admin/stock-in",
     meta: { ...__nuxt_page_meta$e || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-in-Cx9uYbz5.mjs')
+    component: () => import('./stock-in-DYOkrjM7.mjs')
   },
   {
     name: "admin-stock-opname",
     path: "/admin/stock-opname",
     meta: { ...__nuxt_page_meta$d || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-opname-liOwSSn7.mjs')
+    component: () => import('./stock-opname-DOo1aoGP.mjs')
   },
   {
     name: "admin-stock-out",
     path: "/admin/stock-out",
     meta: { ...__nuxt_page_meta$c || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./stock-out-CWJEn3qw.mjs')
+    component: () => import('./stock-out-X1Uf96Ep.mjs')
   },
   {
     name: "admin-store-profile",
@@ -768,67 +768,67 @@ const _routes = [
     name: "admin-suppliers",
     path: "/admin/suppliers",
     meta: { ...__nuxt_page_meta$a || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./suppliers-DrbkCSPB.mjs')
+    component: () => import('./suppliers-CZ3xpUvV.mjs')
   },
   {
     name: "admin-system-profile",
     path: "/admin/system-profile",
     meta: { ...__nuxt_page_meta$9 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./system-profile-CMNRNep1.mjs')
+    component: () => import('./system-profile-CNxwL5Ep.mjs')
   },
   {
     name: "admin-units",
     path: "/admin/units",
     meta: { ...__nuxt_page_meta$8 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./units-CeGUi7Aj.mjs')
+    component: () => import('./units-CXbdjbu-.mjs')
   },
   {
     name: "admin-users",
     path: "/admin/users",
     meta: { ...__nuxt_page_meta$7 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./users-BV20h62x.mjs')
+    component: () => import('./users-9Sb2EOLz.mjs')
   },
   {
     name: "cashier-cash-adjustments",
     path: "/cashier/cash-adjustments",
     meta: { ...__nuxt_page_meta$6 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./cash-adjustments-BiyTz9t3.mjs')
+    component: () => import('./cash-adjustments-DKr_xbup.mjs')
   },
   {
     name: "cashier-transactions",
     path: "/cashier/transactions",
     meta: { ...__nuxt_page_meta$5 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./transactions-DLBQ_Xsu.mjs')
+    component: () => import('./transactions-COZJ7rK1.mjs')
   },
   {
     name: "admin",
     path: "/admin",
     meta: { ...__nuxt_page_meta$4 || {}, ...{ "middleware": "admin-only" } },
-    component: () => import('./index-BPrzQn7w.mjs')
+    component: () => import('./index-BOFHRECU.mjs')
   },
   {
     name: "cashier",
     path: "/cashier",
     meta: { ...__nuxt_page_meta$3 || {}, ...{ "middleware": "cashier-only" } },
-    component: () => import('./index-BhbAoDX5.mjs')
+    component: () => import('./index-BFGOtlT4.mjs')
   },
   {
     name: "forgot-password",
     path: "/forgot-password",
     meta: { ...__nuxt_page_meta$2 || {}, ...{ "middleware": "guest" } },
-    component: () => import('./forgot-password-BexPa7em.mjs')
+    component: () => import('./forgot-password-BC6xXyCM.mjs')
   },
   {
     name: "login",
     path: "/login",
     meta: { ...__nuxt_page_meta$1 || {}, ...{ "middleware": "guest" } },
-    component: () => import('./login-0KqenfBS.mjs')
+    component: () => import('./login-B6e-Qifk.mjs')
   },
   {
     name: "index",
     path: "/",
     meta: __nuxt_page_meta || {},
-    component: () => import('./index-XrcISLP3.mjs')
+    component: () => import('./index-TqJ5C8mo.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -974,10 +974,10 @@ const globalMiddleware = [
   manifest_45route_45rule
 ];
 const namedMiddleware = {
-  "admin-only": () => import('./admin-only-Ca1IV28M.mjs'),
-  auth: () => import('./auth-CjoVvuhw.mjs'),
-  guest: () => import('./guest-CMYgW8lO.mjs'),
-  "cashier-only": () => import('./cashier-only-B6UooYF2.mjs')
+  "admin-only": () => import('./admin-only-oiq-4LlZ.mjs'),
+  auth: () => import('./auth-CwJ2erMq.mjs'),
+  guest: () => import('./guest-Dsiyj56x.mjs'),
+  "cashier-only": () => import('./cashier-only-DLcSkiuV.mjs')
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -1479,9 +1479,9 @@ const plugins = [
   ssr_width_hHlXKglKZCyPkV1wdX9y7dzE_HMTlbfe2qoVkUmjDVM
 ];
 const layouts = {
-  cashier: defineAsyncComponent(() => import('./cashier-DHVGQVTu.mjs').then((m) => m.default || m)),
-  auth: defineAsyncComponent(() => import('./auth-5vZc4nQ1.mjs').then((m) => m.default || m)),
-  admin: defineAsyncComponent(() => import('./admin-BEkSxBZH.mjs').then((m) => m.default || m))
+  cashier: defineAsyncComponent(() => import('./cashier-CYXBT7SI.mjs').then((m) => m.default || m)),
+  auth: defineAsyncComponent(() => import('./auth-DWD3rawQ.mjs').then((m) => m.default || m)),
+  admin: defineAsyncComponent(() => import('./admin-DS7tpqwb.mjs').then((m) => m.default || m))
 };
 const routeRulesMatcher = _routeRulesMatcher;
 const LayoutLoader = defineComponent({
